@@ -42,4 +42,4 @@ jobs:
 
       - name: Push image to GHCR
         run: |
-          docker push discord-bot:${{ steps.vars.outputs.TAG }}
+          docker push ghcr.io/${{ github.repository_owner }}/discord-bot:${{ steps.vars.outputs.TAG }}
