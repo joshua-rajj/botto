@@ -31,6 +31,7 @@ jobs:
             echo "TAG=prod" >> $GITHUB_OUTPUT
           else
             echo "TAG=dev" >> $GITHUB_OUTPUT
+          fi
         shell: bash
 
       - name: Build Docker image
