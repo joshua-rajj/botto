@@ -24,8 +24,14 @@ jobs:
           env:
             GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           run: |
-            RUN_ID=$(gh workflow run "Build and Push Docker Image to GHCR" --ref dev --json id --jq .id)
-            echo "Waiting for build to finish"
+            gh workflow run "Build and Push Docker Image to GHCR" --ref dev
+            sleep 5
+            RUN_ID=$(gh run list \
+            --workflow "Build and Push Docker Image to GHCR" \
+            --branch dev \
+            --limit 1 \
+            --json databaseId \
+            --jq '.[0].databaseId')
             gh run watch $RUN_ID
 
     deploy:
