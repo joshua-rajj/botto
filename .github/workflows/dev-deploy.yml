@@ -17,7 +17,7 @@ jobs:
     build_and_push_image:
       uses: ./.github/workflows/build-and-push-image.yml
       with:
-        tag: env.IMAGE_TAG
+        tag: ${{ env.IMAGE_TAG }}
 
     deploy:
         needs: build_and_push_image
